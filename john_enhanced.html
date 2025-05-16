@@ -99,23 +99,34 @@
   const navLinks = document.querySelectorAll("#nav ul li a");
 
   function setActiveLink() {
-    const scrollY = window.pageYOffset;
+  const scrollY = window.pageYOffset;
+  const windowBottom = scrollY + window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
 
-    sections.forEach(section => {
-      const id = section.getAttribute("id");
-      const offsetTop = section.offsetTop - 120; // adjust for sticky nav height
-      const sectionHeight = section.offsetHeight;
+  sections.forEach(section => {
+    const id = section.getAttribute("id");
+    const offsetTop = section.offsetTop - 120;
+    const sectionHeight = section.offsetHeight;
 
-      if (scrollY >= offsetTop && scrollY < offsetTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove("active");
-          if (link.getAttribute("href").includes(id)) {
-            link.classList.add("active");
-          }
-        });
-      }
-    });
-  }
+    // Regular detection
+    if (scrollY >= offsetTop && scrollY < offsetTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(id)) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    // Special case: if at bottom of page, highlight last section
+    if (windowBottom >= docHeight - 2) {
+      navLinks.forEach(link => link.classList.remove("active"));
+      const lastLink = document.querySelector('#nav ul li a[href="#contact"]');
+      if (lastLink) lastLink.classList.add("active");
+    }
+  });
+}
+
 
   window.addEventListener("scroll", setActiveLink);
 
