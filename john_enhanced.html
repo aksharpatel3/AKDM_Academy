@@ -19,13 +19,11 @@
       <img src="images/akdm_logo.png" alt="Akshardham Academy Logo" />
     </div>
     <h1 id="name">Jay Swaminarayan<br>Delegate Name</h1>
-    <p>
-      We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.
-      <br>If you have any questions, feel free to reach out to the listed contacts.
-    </p>
+    <p>We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.<br>
+       If you have any questions, feel free to reach out to the listed contacts.</p>
   </header>
 
-  <!-- Top Nav (optional) -->
+  <!-- Top Nav -->
   <nav id="nav">
     <ul>
       <li><a href="#accommodations">Accommodations</a></li>
@@ -47,7 +45,6 @@
 
   <!-- Main Content -->
   <div id="main">
-
     <section id="accommodations" class="main">
       <div class="box">
         <h2><i class="fas fa-bed"></i> Accommodations</h2>
@@ -91,22 +88,20 @@
       <div class="box">
         <h2><i class="fas fa-phone-alt"></i> Contact Information</h2>
         <ul class="alt">
-          <li><strong>Contact 1:</strong> Contact 1 - <a href="tel:+11111111111">(111) 111-1111</a></li>
-          <li><strong>Contact 2:</strong> Contact 2 - <a href="tel:+11111111111">(111) 111-1111</a></li>
-          <li><strong>Contact 3:</strong> Contact 3 - <a href="tel:+11111111111">(111) 111-1111</a></li>
+          <li><strong>Contact 1:</strong> (111) 111-1111</li>
+          <li><strong>Contact 2:</strong> (111) 111-1111</li>
+          <li><strong>Contact 3:</strong> (111) 111-1111</li>
         </ul>
       </div>
     </section>
-
   </div>
 
-  <!-- Footer with Image -->
+  <!-- Footer Image -->
   <footer id="footer">
     <div class="footer-image">
-      <img src="images/Standard Footer-White-Pragat Brahmaswarup.png" alt="Akshardham Footer Logo" />
+      <img src="images/Standard Footer-White-Pragat Brahmaswarup.png" alt="Footer Logo" />
     </div>
   </footer>
-
 </div>
 
 <!-- Core Scripts -->
@@ -118,19 +113,16 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 
-<!-- Dot-Nav Script -->
+<!-- Dot-Nav Script with bottom-check -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const dots     = Array.from(document.querySelectorAll('.dot-nav a'));
     const sections = dots.map(dot => document.querySelector(dot.getAttribute('href')));
     const navH     = document.getElementById('nav').offsetHeight;
 
-    // Smooth scroll on click + immediate dot highlight
     dots.forEach((dot, i) => {
       dot.addEventListener('click', e => {
         e.preventDefault();
-        dots.forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
         window.scrollTo({
           top: sections[i].offsetTop - navH + 1,
           behavior: 'smooth'
@@ -138,20 +130,28 @@
       });
     });
 
-    // Highlight dot based on scroll position
     function highlightDot() {
-      const pos = window.pageYOffset + navH + 10;
+      const scrollPos    = window.pageYOffset + navH + 5;
+      const windowBottom = window.pageYOffset + window.innerHeight;
+      const docHeight    = document.documentElement.scrollHeight;
       let idx = 0;
+
       sections.forEach((sec, i) => {
-        if (sec.offsetTop <= pos) idx = i;
+        if (sec.offsetTop <= scrollPos) idx = i;
       });
+
+      // Bottom-of-page ensures last dot
+      if (windowBottom >= docHeight - 2) {
+        idx = sections.length - 1;
+      }
+
       dots.forEach(d => d.classList.remove('active'));
       dots[idx].classList.add('active');
     }
+
     window.addEventListener('scroll', highlightDot, { passive: true });
     highlightDot();
   });
 </script>
-
 </body>
 </html>
