@@ -1,14 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <title>Akshardham Academy</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Akshardham Academy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/custom-modern-enhanced.css" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
   <div id="wrapper">
@@ -19,11 +21,13 @@
         <img src="images/akdm_logo.png" alt="Akshardham Academy Logo" />
       </div>
       <h1 id="name">Jay Swaminarayan<br>Delegate Name</h1>
-      <p>We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.
-        <br>If you have any questions, feel free to reach out to the listed contacts.</p>
+      <p>
+        We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.<br>
+        If you have any questions, feel free to reach out to the listed contacts.
+      </p>
     </header>
 
-    <!-- Top Nav -->
+    <!-- Top Navigation Bar -->
     <nav id="nav">
       <ul>
         <li><a href="#accommodations">Accommodations</a></li>
@@ -34,7 +38,7 @@
       </ul>
     </nav>
 
-    <!-- Dot Navigator -->
+    <!-- Dot Navigator (desktop only) -->
     <div class="dot-nav">
       <a href="#accommodations" aria-label="Accommodations"></a>
       <a href="#wifi"           aria-label="WiFi Info"></a>
@@ -104,7 +108,7 @@
     </footer>
   </div>
 
-  <!-- Scripts (unchanged) -->
+  <!-- Core Scripts (unchanged) -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/jquery.scrollex.min.js"></script>
   <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -112,6 +116,41 @@
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
-  <!-- dot-nav script unchanged -->
+
+  <!-- Dot‐nav Highlight Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dots     = Array.from(document.querySelectorAll('.dot-nav a'));
+      const sections = dots.map(d => document.querySelector(d.getAttribute('href')));
+      const navH     = document.getElementById('nav').offsetHeight;
+
+      // Smooth scroll on click
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', e => {
+          e.preventDefault();
+          window.scrollTo({
+            top: sections[i].offsetTop - navH + 1,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Highlight based on scroll + bottom‐check
+      function highlightDot() {
+        const scrollPos = window.pageYOffset + navH + 5;
+        const bottomPos = window.pageYOffset + window.innerHeight;
+        const docH      = document.documentElement.scrollHeight;
+        let idx = 0;
+        sections.forEach((sec, i) => {
+          if (sec.offsetTop <= scrollPos) idx = i;
+        });
+        if (bottomPos >= docH - 2) idx = sections.length - 1;
+        dots.forEach(d => d.classList.remove('active'));
+        dots[idx].classList.add('active');
+      }
+      window.addEventListener('scroll', highlightDot, { passive: true });
+      highlightDot();
+    });
+  </script>
 </body>
 </html>
