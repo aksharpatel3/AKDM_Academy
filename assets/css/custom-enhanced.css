@@ -91,8 +91,10 @@ section.main {
   background-color: #ffffff;
   border-radius: 12px;
   padding: 2em;
-  margin: 2em 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin: 2em auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e4dfd7;
+  max-width: 800px;
 }
 
 section.main.special {
