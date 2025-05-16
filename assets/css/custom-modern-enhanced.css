@@ -83,21 +83,22 @@ header#header.alt p {
 
 #nav ul li {
   display: inline-block;
-  margin: 0 1.5em;
+  margin: 0 1em;
 }
 
 #nav ul li a {
-  color: #111 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 48px;
   font-weight: 600;
   font-size: 1em;
   text-decoration: none;
-  padding: 0.6em 1.4em;
+  color: #111 !important;
+  border: 2px solid transparent;
   border-radius: 999px;
   transition: all 0.3s ease;
-  display: inline-block;
-  line-height: 1.2;
-  border: 2px solid transparent;
-  vertical-align: middle;
 }
 
 #nav ul li a.active {
@@ -113,11 +114,8 @@ section.main {
   padding: 3em 1.5em;
   margin: 0 auto;
   max-width: 900px;
-}
-section.main {
   scroll-margin-top: 100px; /* ensures anchor targets aren't hidden under the sticky nav */
 }
-
 
 section.main.special {
   padding-top: 1em;
@@ -233,6 +231,8 @@ footer#footer ul.alt li {
   #nav ul li a {
     font-size: 0.95em;
     padding: 0.5em 1em;
+    width: auto;
+    height: auto;
   }
 }
 
@@ -254,15 +254,9 @@ footer#footer ul.alt li {
   }
 }
 
+/* ------------------------------
+   Section Padding Fixes
+------------------------------ */
 #contact {
   padding-bottom: 4em;
 }
-
-.nav-link {
-  display: inline-block;
-  width: 130px; /* fixed width for consistent wrapping */
-  text-align: center;
-  line-height: 1.3;
-}
-
-
