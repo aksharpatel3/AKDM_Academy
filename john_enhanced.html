@@ -116,41 +116,44 @@
 <script src="assets/js/main.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    const navLinks = Array.from(document.querySelectorAll('#nav ul li a'));
-    const nav = document.getElementById('nav');
-    const navHeight = nav.offsetHeight;
+    const nav      = document.getElementById('nav');
+    const navLinks = Array.from(nav.querySelectorAll('a'));
+    const navH     = nav.getBoundingClientRect().height;
+    // Map each nav link to its section element
+    const sections = navLinks.map(link => document.querySelector(link.getAttribute('href')));
 
-    function highlightCurrent() {
-      // How far down the page, offset by nav height
-      const scrollPos = window.pageYOffset + navHeight + 10; 
-      // Default to first section
-      let currentId = sections[0].id;
-
-      sections.forEach(sec => {
-        if (sec.offsetTop <= scrollPos) {
-          currentId = sec.id;
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
-      });
-    }
-
-    // On scroll, recalc which section is active
-    window.addEventListener('scroll', highlightCurrent, { passive: true });
-
-    // On click, immediately highlight that tab
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+    // --- Click handler: smooth scroll + immediate highlight ---
+    navLinks.forEach((link, idx) => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        // Remove all active classes
         navLinks.forEach(l => l.classList.remove('active'));
+        // Highlight this one
         link.classList.add('active');
+        // Smooth scroll to section, offset by nav height
+        window.scrollTo({
+          top: sections[idx].offsetTop - navH + 1,
+          behavior: 'smooth'
+        });
       });
     });
 
+    // --- Scroll handler: pick the section with largest offsetTop ≤ scrollPos ---
+    function onScroll() {
+      const scrollPos = window.pageYOffset + navH + 2;
+      // Find the last section whose top is ≤ scrollPos
+      let activeIndex = 0;
+      sections.forEach((sec, i) => {
+        if (sec.offsetTop <= scrollPos) activeIndex = i;
+      });
+      // Highlight that link
+      navLinks.forEach(l => l.classList.remove('active'));
+      navLinks[activeIndex].classList.add('active');
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     // Initialize on load
-    highlightCurrent();
+    onScroll();
   });
 </script>
 
