@@ -118,14 +118,15 @@
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll("#nav ul li a");
   let clickedSection = null;
+  let suppressScrollUpdate = false;
 
   function setActiveLink() {
+    if (suppressScrollUpdate) return;
+
     const scrollY = window.pageYOffset;
     const buffer = 150;
-    const bottomThreshold = 2;
     const windowBottom = scrollY + window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
-
     let matched = false;
 
     sections.forEach(section => {
@@ -134,7 +135,6 @@
       const offsetBottom = offsetTop + section.offsetHeight;
 
       if (scrollY >= offsetTop && scrollY < offsetBottom) {
-        if (clickedSection && clickedSection !== id) return; // wait until scroll completes from click
         navLinks.forEach(link => {
           link.classList.remove("active");
           if (link.getAttribute("href") === `#${id}`) {
@@ -142,29 +142,33 @@
           }
         });
         matched = true;
-        clickedSection = null; // reset after successful match
       }
     });
 
-    // If at bottom of the page
-    if (!matched && windowBottom >= docHeight - bottomThreshold) {
+    // If at bottom of the page, always highlight last section
+    if (!matched && windowBottom >= docHeight - 2) {
       navLinks.forEach(link => link.classList.remove("active"));
       const lastLink = document.querySelector('#nav ul li a[href="#contact"]');
       if (lastLink) lastLink.classList.add("active");
     }
   }
 
-  // Listen for scroll
   window.addEventListener("scroll", setActiveLink);
 
-  // Highlight on click
   navLinks.forEach(link => {
     link.addEventListener("click", function () {
-      const targetId = this.getAttribute("href").replace("#", "");
-      clickedSection = targetId;
-
+      // Highlight immediately
       navLinks.forEach(l => l.classList.remove("active"));
       this.classList.add("active");
+
+      // Track clicked section and suppress scroll updates briefly
+      clickedSection = this.getAttribute("href").replace("#", "");
+      suppressScrollUpdate = true;
+
+      setTimeout(() => {
+        clickedSection = null;
+        suppressScrollUpdate = false;
+      }, 1000); // allow scroll detection to resume after transition
     });
   });
 </script>
