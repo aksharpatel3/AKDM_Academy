@@ -171,3 +171,22 @@ footer#footer ul.alt li {
 .arti-time {
   color: #444;
 }
+
+
+#nav ul li a {
+  color: #111 !important;
+  font-weight: 600;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 0.5em 1.2em;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* 🔹 Active tab style (click or scroll) */
+#nav ul li a.active {
+  background-color: #f4f1ec;
+  border: 2px solid #c9b99d;
+  color: #000 !important;
+}
