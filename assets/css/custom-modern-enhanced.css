@@ -184,3 +184,99 @@ section.main.special {
 @media (max-width: 480px) {
   #nav ul li { display: block; margin: 0.5em 0; }
 }
+
+
+/* ----------------------------------------
+   MOBILE OPTIMIZATIONS (up to 768px)
+---------------------------------------- */
+@media (max-width: 768px) {
+  /* Hide the dot-nav on phones */
+  .dot-nav {
+    display: none;
+  }
+
+  /* Stack the top nav vertically */
+  #nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    padding: 0.5em;
+  }
+  #nav ul li {
+    margin: 0;
+  }
+  #nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 0.8em;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1em;
+  }
+
+  /* Reduce header padding and scale logo */
+  header#header.alt {
+    padding: 2.5em 1em 1.5em;
+  }
+  .logo-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Boxes fill nearly full width, less margin */
+  .box {
+    margin: 1.5em 0.5em;
+    padding: 1.5em;
+    max-width: none;
+  }
+
+  /* Smaller section padding */
+  section.main {
+    padding: 2em 1em;
+  }
+  section.main.special {
+    padding: 1em 1em 2em;
+  }
+
+  /* Arti schedule narrower gap for mobile */
+  .arti-schedule {
+    gap: 0.8em;
+  }
+
+  /* Footer image fills more width */
+  .footer-image img {
+    width: 60%;
+    max-height: none;
+  }
+}
+
+/* ----------------------------------------
+   MOBILE-FRIENDLY TOUCH TARGETS (up to 480px)
+---------------------------------------- */
+@media (max-width: 480px) {
+  /* Nav font slightly bigger for readability */
+  #nav ul li a {
+    font-size: 1.2em;
+    padding: 1em;
+  }
+
+  /* Increase spacing around boxes */
+  .box {
+    margin: 2em 0.5em;
+    padding: 1.8em;
+  }
+
+  /* Shrink header text a hair */
+  header#header.alt h1 {
+    font-size: 2.2em;
+  }
+  header#header.alt p {
+    font-size: 1em;
+  }
+
+  /* Let images in boxes fill width */
+  .image.fit img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
