@@ -52,7 +52,7 @@ header#header.alt p {
 }
 
 /* ------------------------------
-   Top Nav
+   Top Nav (desktop)
 ------------------------------ */
 #nav {
   position: sticky;
@@ -81,7 +81,7 @@ header#header.alt p {
 }
 
 /* ------------------------------
-   Main Layout
+   Main Content Layout
 ------------------------------ */
 section.main {
   padding: 3em 1.5em;
@@ -158,7 +158,7 @@ section.main.special {
 }
 
 /* ------------------------------
-   Dot Navigator
+   Dot Navigator (desktop)
 ------------------------------ */
 .dot-nav {
   position: fixed;
@@ -185,16 +185,15 @@ section.main.special {
 }
 
 /* ------------------------------
-   MOBILE (≤768px): HIDE NAVS
+   MOBILE (≤768px): HIDE BOTH NAVS
 ------------------------------ */
 @media (max-width: 768px) {
-  /* remove both nav bars */
   #nav,
   .dot-nav {
     display: none;
   }
 
-  /* restore full-width header & content */
+  /* Full-width hero + content tweaks */
   header#header.alt {
     padding: 2.5em 1em 1.5em;
   }
@@ -222,7 +221,7 @@ section.main.special {
 }
 
 /* ------------------------------
-   MOBILE (≤480px) FURTHER TWEAKS
+   MOBILE (≤480px): FURTHER TWEAKS
 ------------------------------ */
 @media (max-width: 480px) {
   header#header.alt h1 {
