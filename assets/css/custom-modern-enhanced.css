@@ -135,7 +135,7 @@ section.main.special {
   justify-content: center;
 }
 .footer-image img {
-  max-height: 120px; /* was 60px */
+  max-height: 80px; /* was 60px */
   width: auto;
 }
 
