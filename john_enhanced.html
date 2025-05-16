@@ -103,7 +103,7 @@
     let scrollY = window.pageYOffset;
 
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120; // adjust based on your header height
+      const sectionTop = section.offsetTop - window.innerHeight / 2;
       const sectionHeight = section.offsetHeight;
       const id = section.getAttribute("id");
 
