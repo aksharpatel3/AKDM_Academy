@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
   <title>Akshardham Academy</title>
   <meta charset="utf-8" />
@@ -13,29 +13,33 @@
 <body class="is-preload">
 <div id="wrapper">
 
+  <!-- Header -->
   <header id="header" class="alt">
     <div class="logo-circle">
       <img src="images/akdm_logo.png" alt="Akshardham Academy Logo" />
     </div>
     <h1 id="name">Jay Swaminarayan<br>Delegate Name</h1>
-    <p>We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.
+    <p>
+      We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.
       <br>If you have any questions, feel free to reach out to the listed contacts.
     </p>
   </header>
 
+  <!-- Navigation -->
   <nav id="nav">
-  <ul>
-    <li><a href="#accommodations" class="active">Accommodations</a></li>
-    <li><a href="#wifi">WiFi Info</a></li>
-    <li><a href="#account">Account Info</a></li>
-    <li><a href="#schedule">Arti Schedule</a></li>
-    <li><a href="#contact">Contact Info</a></li>
-  </ul>
-</nav>
+    <ul>
+      <li><a href="#accommodations" class="active">Accommodations</a></li>
+      <li><a href="#wifi">WiFi Info</a></li>
+      <li><a href="#account">Account Info</a></li>
+      <li><a href="#schedule">Arti Schedule</a></li>
+      <li><a href="#contact">Contact Info</a></li>
+    </ul>
+  </nav>
 
-
-
+  <!-- Main Content -->
   <div id="main">
+
+    <!-- Accommodations Section -->
     <section id="accommodations" class="main">
       <div class="box">
         <h2><i class="fas fa-bed"></i> Accommodations</h2>
@@ -46,6 +50,7 @@
       </div>
     </section>
 
+    <!-- WiFi Section -->
     <section id="wifi" class="main">
       <div class="box">
         <h2><i class="fas fa-wifi"></i> WiFi Information</h2>
@@ -53,6 +58,7 @@
       </div>
     </section>
 
+    <!-- Account Section -->
     <section id="account" class="main">
       <div class="box">
         <h2><i class="fas fa-user-circle"></i> Account Information</h2>
@@ -60,6 +66,7 @@
       </div>
     </section>
 
+    <!-- Arti Schedule Section -->
     <section id="schedule" class="main special">
       <div class="box">
         <h2><i class="fas fa-calendar-alt"></i> Arti Schedule</h2>
@@ -74,21 +81,29 @@
         </div>
       </div>
     </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="main">
+      <div class="box">
+        <h2><i class="fas fa-phone-alt"></i> Contact Information</h2>
+        <ul class="alt">
+          <li><strong>Contact 1:</strong> Contact 1 - <a href="tel:+11111111111">(111) 111-1111</a></li>
+          <li><strong>Contact 2:</strong> Contact 2 - <a href="tel:+11111111111">(111) 111-1111</a></li>
+          <li><strong>Contact 3:</strong> Contact 3 - <a href="tel:+11111111111">(111) 111-1111</a></li>
+        </ul>
+      </div>
+    </section>
+
   </div>
 
+  <!-- Footer -->
   <footer id="footer">
-    <section id="contact">
-      <h2><i class="fas fa-phone-alt"></i> Contact Information</h2>
-      <ul class="alt">
-        <li><strong>Contact 1:</strong> Contact 1 - <a href="tel:+11111111111">(111) 111-1111</a></li>
-        <li><strong>Contact 2:</strong> Contact 2 - <a href="tel:+11111111111">(111) 111-1111</a></li>
-        <li><strong>Contact 3:</strong> Contact 3 - <a href="tel:+11111111111">((111) 111-1111</a></li>
-      </ul>
-    </section>
+    <p style="text-align:center; font-size:0.9em; color:#ccc;">&copy; 2025 Akshardham Academy</p>
   </footer>
 
 </div>
 
+<!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.scrollex.min.js"></script>
 <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -101,38 +116,38 @@
   const navLinks = document.querySelectorAll("#nav ul li a");
 
   function setActiveLink() {
-  const scrollY = window.pageYOffset;
-  const windowBottom = scrollY + window.innerHeight;
-  const docHeight = document.documentElement.scrollHeight;
+    const scrollY = window.pageYOffset;
+    const windowBottom = scrollY + window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
 
-  sections.forEach(section => {
-    const id = section.getAttribute("id");
-    const offsetTop = section.offsetTop - 120;
-    const sectionHeight = section.offsetHeight;
+    let found = false;
 
-    // Regular detection
-    if (scrollY >= offsetTop && scrollY < offsetTop + sectionHeight) {
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").includes(id)) {
-          link.classList.add("active");
-        }
-      });
-    }
+    sections.forEach(section => {
+      const id = section.getAttribute("id");
+      const offsetTop = section.offsetTop - 120;
+      const sectionHeight = section.offsetHeight;
 
-    // Special case: if at bottom of page, highlight last section
-    if (windowBottom >= docHeight - 2) {
+      if (scrollY >= offsetTop && scrollY < offsetTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").includes(id)) {
+            link.classList.add("active");
+            found = true;
+          }
+        });
+      }
+    });
+
+    // Special case: at bottom of page
+    if (!found && (windowBottom >= docHeight - 2)) {
       navLinks.forEach(link => link.classList.remove("active"));
       const lastLink = document.querySelector('#nav ul li a[href="#contact"]');
       if (lastLink) lastLink.classList.add("active");
     }
-  });
-}
-
+  }
 
   window.addEventListener("scroll", setActiveLink);
 
-  // Highlight on click as well
   navLinks.forEach(link => {
     link.addEventListener("click", function () {
       navLinks.forEach(l => l.classList.remove("active"));
@@ -140,7 +155,6 @@
     });
   });
 </script>
-
 
 </body>
 </html>
