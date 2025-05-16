@@ -156,8 +156,22 @@
 
   // 🔁 Scroll updates (skip if click is in progress)
   window.addEventListener("scroll", () => {
-    if (!clickedId) updateActiveNav();
-  });
+  const scrollY = window.pageYOffset;
+  const windowBottom = scrollY + window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+
+  if (!clickedId) {
+    updateActiveNav();
+  }
+
+  // ✅ Force highlight #contact at very bottom of page
+  if (windowBottom >= docHeight - 1) {
+    navLinks.forEach(link => link.classList.remove("active"));
+    const contactLink = document.querySelector('#nav ul li a[href="#contact"]');
+    if (contactLink) contactLink.classList.add("active");
+  }
+});
+
 
   // ✅ Click-based tab highlight (even when scroll doesn’t fire)
   navLinks.forEach(link => {
