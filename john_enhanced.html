@@ -120,29 +120,28 @@
 
   function setActiveLink() {
     const scrollY = window.pageYOffset;
-    const windowBottom = scrollY + window.innerHeight;
-    const docHeight = document.documentElement.scrollHeight;
+    const buffer = 150; // adjust for sticky nav height
 
-    let found = false;
+    let matched = false;
 
-    sections.forEach(section => {
+    sections.forEach((section, index) => {
       const id = section.getAttribute("id");
-      const offsetTop = section.offsetTop - 120;
-      const sectionHeight = section.offsetHeight;
+      const offsetTop = section.offsetTop - buffer;
+      const offsetBottom = offsetTop + section.offsetHeight;
 
-      if (scrollY >= offsetTop && scrollY < offsetTop + sectionHeight) {
+      if (scrollY >= offsetTop && scrollY < offsetBottom) {
         navLinks.forEach(link => {
           link.classList.remove("active");
-          if (link.getAttribute("href").includes(id)) {
+          if (link.getAttribute("href") === `#${id}`) {
             link.classList.add("active");
-            found = true;
+            matched = true;
           }
         });
       }
     });
 
-    // Special case: at bottom of page
-    if (!found && (windowBottom >= docHeight - 2)) {
+    // If no match and you're at bottom of page, highlight last section
+    if (!matched && (window.innerHeight + scrollY >= document.body.offsetHeight - 2)) {
       navLinks.forEach(link => link.classList.remove("active"));
       const lastLink = document.querySelector('#nav ul li a[href="#contact"]');
       if (lastLink) lastLink.classList.add("active");
@@ -158,6 +157,7 @@
     });
   });
 </script>
+
 
 </body>
 </html>
