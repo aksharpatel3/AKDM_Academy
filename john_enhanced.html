@@ -117,14 +117,12 @@
 <script>
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll("#nav ul li a");
-  let clickedId = null;
 
-  function updateActiveNav(targetId = null) {
+  function updateActiveNav() {
     const scrollY = window.pageYOffset;
     const buffer = 150;
     const windowBottom = scrollY + window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
-
     let matched = false;
 
     sections.forEach(section => {
@@ -132,10 +130,7 @@
       const offsetTop = section.offsetTop - buffer;
       const offsetBottom = offsetTop + section.offsetHeight;
 
-      if (
-        (targetId && id === targetId) || // click case
-        (!targetId && scrollY >= offsetTop && scrollY < offsetBottom) // scroll case
-      ) {
+      if (scrollY >= offsetTop && scrollY < offsetBottom) {
         navLinks.forEach(link => {
           link.classList.remove("active");
           if (link.getAttribute("href") === `#${id}`) {
@@ -146,49 +141,30 @@
       }
     });
 
-    // Scroll-to-bottom edge case for #contact
-    if (!matched && windowBottom >= docHeight - 2) {
+    // If at bottom of the page, force contact to be active
+    if (!matched && windowBottom >= docHeight - 1) {
       navLinks.forEach(link => link.classList.remove("active"));
       const contactLink = document.querySelector('#nav ul li a[href="#contact"]');
       if (contactLink) contactLink.classList.add("active");
     }
   }
 
-  // 🔁 Scroll updates (skip if click is in progress)
-  window.addEventListener("scroll", () => {
-  const scrollY = window.pageYOffset;
-  const windowBottom = scrollY + window.innerHeight;
-  const docHeight = document.documentElement.scrollHeight;
+  // ✅ Always update on scroll
+  window.addEventListener("scroll", updateActiveNav);
 
-  if (!clickedId) {
-    updateActiveNav();
-  }
-
-  // ✅ Force highlight #contact at very bottom of page
-  if (windowBottom >= docHeight - 1) {
-    navLinks.forEach(link => link.classList.remove("active"));
-    const contactLink = document.querySelector('#nav ul li a[href="#contact"]');
-    if (contactLink) contactLink.classList.add("active");
-  }
-});
-
-
-  // ✅ Click-based tab highlight (even when scroll doesn’t fire)
+  // ✅ Also update immediately on click
   navLinks.forEach(link => {
     link.addEventListener("click", function () {
-      const href = this.getAttribute("href");
-      clickedId = href.replace("#", "");
+      const targetId = this.getAttribute("href").replace("#", "");
+      navLinks.forEach(l => l.classList.remove("active"));
+      this.classList.add("active");
 
-      // Immediately highlight the clicked link
-      updateActiveNav(clickedId);
-
-      // Reset after delay (scroll should take over again)
-      setTimeout(() => {
-        clickedId = null;
-      }, 1000);
+      // Scroll may be too fast — delay re-enabling auto-detect
+      setTimeout(() => updateActiveNav(), 600);
     });
   });
 </script>
+
 
 
 
