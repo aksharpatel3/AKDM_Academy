@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   background-color: #f4f1ec;
@@ -114,17 +113,6 @@ section.main.special h2 {
   font-weight: 600;
 }
 
-dl.alt dt {
-  font-weight: bold;
-  color: #000;
-  font-size: 1.1em;
-}
-
-dl.alt dd {
-  margin-bottom: 1em;
-  font-size: 1em;
-}
-
 .image.fit img {
   border-radius: 10px;
   width: 100%;
@@ -150,4 +138,32 @@ footer#footer a {
 
 footer#footer ul.alt li {
   margin: 0.5em 0;
+}
+
+/* Arti Schedule - aligned layout */
+.arti-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  margin: 2em auto;
+  max-width: 500px;
+  text-align: left;
+}
+
+.arti-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3em;
+}
+
+.arti-name {
+  font-weight: 600;
+  color: #111;
+}
+
+.arti-time {
+  color: #444;
 }
