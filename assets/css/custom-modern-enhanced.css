@@ -178,11 +178,15 @@ footer#footer ul.alt li {
   font-weight: 600;
   font-size: 1em;
   text-decoration: none;
-  padding: 0.5em 1.2em;
-  border-radius: 12px;
+  padding: 0.6em 1.4em;
+  border-radius: 999px;
   transition: all 0.3s ease;
   display: inline-block;
+  line-height: 1.2;
+  border: 2px solid transparent;
+  vertical-align: middle;
 }
+
 
 /* 🔹 Active tab style (click or scroll) */
 #nav ul li a.active {
@@ -190,3 +194,23 @@ footer#footer ul.alt li {
   border: 2px solid #c9b99d;
   color: #000 !important;
 }
+
+/* NAV: responsive layout for small screens */
+@media (max-width: 768px) {
+  #nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  #nav ul li {
+    flex: 0 0 auto;
+  }
+
+  #nav ul li a {
+    font-size: 0.95em;
+    padding: 0.5em 1em;
+  }
+}
+
