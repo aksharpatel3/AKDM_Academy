@@ -117,46 +117,58 @@
 <script>
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll("#nav ul li a");
+  let clickedSection = null;
 
   function setActiveLink() {
     const scrollY = window.pageYOffset;
-    const buffer = 150; // adjust for sticky nav height
+    const buffer = 150;
+    const bottomThreshold = 2;
+    const windowBottom = scrollY + window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
 
     let matched = false;
 
-    sections.forEach((section, index) => {
-      const id = section.getAttribute("id");
+    sections.forEach(section => {
+      const id = section.id;
       const offsetTop = section.offsetTop - buffer;
       const offsetBottom = offsetTop + section.offsetHeight;
 
       if (scrollY >= offsetTop && scrollY < offsetBottom) {
+        if (clickedSection && clickedSection !== id) return; // wait until scroll completes from click
         navLinks.forEach(link => {
           link.classList.remove("active");
           if (link.getAttribute("href") === `#${id}`) {
             link.classList.add("active");
-            matched = true;
           }
         });
+        matched = true;
+        clickedSection = null; // reset after successful match
       }
     });
 
-    // If no match and you're at bottom of page, highlight last section
-    if (!matched && (window.innerHeight + scrollY >= document.body.offsetHeight - 2)) {
+    // If at bottom of the page
+    if (!matched && windowBottom >= docHeight - bottomThreshold) {
       navLinks.forEach(link => link.classList.remove("active"));
       const lastLink = document.querySelector('#nav ul li a[href="#contact"]');
       if (lastLink) lastLink.classList.add("active");
     }
   }
 
+  // Listen for scroll
   window.addEventListener("scroll", setActiveLink);
 
+  // Highlight on click
   navLinks.forEach(link => {
     link.addEventListener("click", function () {
+      const targetId = this.getAttribute("href").replace("#", "");
+      clickedSection = targetId;
+
       navLinks.forEach(l => l.classList.remove("active"));
       this.classList.add("active");
     });
   });
 </script>
+
 
 
 </body>
