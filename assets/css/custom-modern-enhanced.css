@@ -258,3 +258,11 @@ footer#footer ul.alt li {
   padding-bottom: 4em;
 }
 
+.nav-link {
+  display: inline-block;
+  width: 130px; /* fixed width for consistent wrapping */
+  text-align: center;
+  line-height: 1.3;
+}
+
+
