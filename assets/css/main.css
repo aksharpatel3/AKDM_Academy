@@ -1,0 +1,84 @@
+
+/* Basic structural layout similar to Stellar/HTML5 UP templates */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 0.5em 0;
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grid utility */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5em;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  padding: 0.5em;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  padding: 0.5em;
+}
+
+/* Navigation basics */
+#nav {
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+  background: #eee;
+}
+
+#nav ul {
+  display: flex;
+  gap: 1em;
+}
+
+#main {
+  padding: 2em 1em;
+}
+
+/* Smooth anchor scroll offset */
+:target::before {
+  content: "";
+  display: block;
+  height: 100px;
+  margin-top: -100px;
+}
