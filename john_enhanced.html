@@ -115,43 +115,45 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-  // Grab sections and nav links
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('#nav ul li a');
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('#nav ul li a'));
+    const nav = document.getElementById('nav');
+    const navHeight = nav.offsetHeight;
 
-  // IntersectionObserver options:  
-  // - rootMargin top offset to account for sticky nav
-  // - negative bottom margin so even short sections trigger
-  const observerOptions = {
-    root: null,
-    rootMargin: '-150px 0px -50% 0px',
-    threshold: 0
-  };
+    function highlightCurrent() {
+      // How far down the page, offset by nav height
+      const scrollPos = window.pageYOffset + navHeight + 10; 
+      // Default to first section
+      let currentId = sections[0].id;
 
-  // Callback: when a section enters that viewport slice, activate its nav link
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => link.classList.remove('active'));
-        const activeLink = document.querySelector(
-          `#nav ul li a[href="#${entry.target.id}"]`
-        );
-        if (activeLink) activeLink.classList.add('active');
-      }
+      sections.forEach(sec => {
+        if (sec.offsetTop <= scrollPos) {
+          currentId = sec.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+      });
+    }
+
+    // On scroll, recalc which section is active
+    window.addEventListener('scroll', highlightCurrent, { passive: true });
+
+    // On click, immediately highlight that tab
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
     });
-  }, observerOptions);
 
-  // Observe each section
-  sections.forEach(sec => observer.observe(sec));
-
-  // Also, on click: immediately highlight the clicked link
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-    });
+    // Initialize on load
+    highlightCurrent();
   });
 </script>
+
 
 
 
