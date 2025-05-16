@@ -9,9 +9,9 @@ body {
   line-height: 1.6;
 }
 #wrapper {
-  background-color: #fff;
   max-width: 1100px;
   margin: auto;
+  background: #fff;
   box-shadow: 0 0 12px rgba(0,0,0,0.05);
 }
 
@@ -20,7 +20,6 @@ body {
 ------------------------------ */
 header#header.alt {
   background: linear-gradient(to right, #eae6df, #d6cfc1);
-  color: #000;
   text-align: center;
   padding: 4em 2em 2em;
 }
@@ -33,49 +32,38 @@ header#header.alt h1 {
 header#header.alt p {
   color: #444;
   font-size: 1.1em;
-  margin-top: 1em;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 1em auto 0;
 }
 .logo-circle {
   width: 160px;
   height: 160px;
   margin: 0 auto;
   border-radius: 50%;
-  background-color: #fff;
+  background: #fff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.logo-circle img {
-  width: 80%;
-  object-fit: contain;
-}
+.logo-circle img { width: 80%; object-fit: contain; }
 
 /* ------------------------------
-   Top Navigation (optional)
+   Top Nav
 ------------------------------ */
 #nav {
   position: sticky;
   top: 0;
-  z-index: 999;
   background: #fff;
   border-top: 2px solid #000;
   border-bottom: 1px solid #ccc;
   padding: 0.5em 0;
   text-align: center;
+  z-index: 999;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-#nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-#nav ul li {
-  display: inline-block;
-  margin: 0 1em;
-}
+#nav ul { margin: 0; padding: 0; list-style: none; }
+#nav ul li { display: inline-block; margin: 0 1em; }
 #nav ul li a {
   font-weight: 600;
   color: #111;
@@ -87,8 +75,8 @@ header#header.alt p {
 ------------------------------ */
 section.main {
   padding: 3em 1.5em;
-  margin: 0 auto;
   max-width: 900px;
+  margin: auto;
   scroll-margin-top: 100px;
 }
 section.main.special {
@@ -113,7 +101,7 @@ section.main.special {
   box-shadow: 0 14px 28px rgba(0,0,0,0.15);
   transform: translateY(-4px);
   border-color: #c9b99d;
-  background-color: #fdfaf4;
+  background: #fdfaf4;
 }
 
 /* ------------------------------
@@ -123,8 +111,8 @@ section.main.special {
   display: flex;
   flex-direction: column;
   gap: 1.2em;
-  margin: 2em auto;
   max-width: 500px;
+  margin: 2em auto;
 }
 .arti-item {
   display: flex;
@@ -138,26 +126,23 @@ section.main.special {
 .arti-time { color: #444; }
 
 /* ------------------------------
-   Footer Image
+   Footer
 ------------------------------ */
 .footer-image {
+  background: #111;
+  padding: 2em 0;
   display: flex;
   justify-content: center;
-  padding: 2em 0;
-  background-color: #111;
 }
-.footer-image img {
-  max-height: 60px;
-  width: auto;
-}
+.footer-image img { max-height: 60px; }
 
 /* ------------------------------
    Image Styling
 ------------------------------ */
 .image.fit img {
-  border-radius: 10px;
   width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 
 /* ------------------------------
@@ -191,7 +176,7 @@ section.main.special {
    Responsive
 ------------------------------ */
 @media (max-width: 768px) {
-  .dot-nav { display: none; /* hide on small screens if you prefer */ }
+  .dot-nav { display: none; }
 }
 @media (max-width: 480px) {
   #nav ul li { display: block; margin: 0.5em 0; }
