@@ -114,6 +114,10 @@ section.main {
   margin: 0 auto;
   max-width: 900px;
 }
+section.main {
+  scroll-margin-top: 100px; /* ensures anchor targets aren't hidden under the sticky nav */
+}
+
 
 section.main.special {
   padding-top: 1em;
