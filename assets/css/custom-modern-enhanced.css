@@ -1,9 +1,16 @@
+/* custom-modern-enhanced.css */
+
+/* Enable pinch-zoom and standard touch interactions on mobile */
+html {
+  touch-action: manipulation;
+}
+
 /* ------------------------------
    Base Styles
 ------------------------------ */
 body {
-  font-family: 'Poppins','Segoe UI',sans-serif;
-  background: #f4f1ec;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background-color: #f4f1ec;
   margin: 0;
   padding: 0;
   line-height: 1.6;
@@ -19,13 +26,13 @@ body {
    Header
 ------------------------------ */
 header#header.alt {
-  background: linear-gradient(to right,#eae6df,#d6cfc1);
+  background: linear-gradient(to right, #eae6df, #d6cfc1);
   text-align: center;
   padding: 4em 2em 2em;
 }
 header#header.alt h1 {
   font-size: 2.8em;
-  margin-top: .5em;
+  margin-top: 0.5em;
   font-weight: 700;
   color: #111;
 }
@@ -35,8 +42,6 @@ header#header.alt p {
   max-width: 700px;
   margin: 1em auto 0;
 }
-
-/* Logo circle */
 .logo-circle {
   width: 160px;
   height: 160px;
@@ -62,13 +67,20 @@ header#header.alt p {
   background: #fff;
   border-top: 2px solid #000;
   border-bottom: 1px solid #ccc;
-  padding: .5em 0;
+  padding: 0.5em 0;
   text-align: center;
   z-index: 999;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-#nav ul { margin: 0; padding: 0; list-style: none; }
-#nav ul li { display: inline-block; margin: 0 1em; }
+#nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#nav ul li {
+  display: inline-block;
+  margin: 0 1em;
+}
 #nav ul li a {
   font-weight: 600;
   color: #111;
@@ -100,7 +112,7 @@ section.main.special {
   max-width: 760px;
   border: 1px solid #e2ddd4;
   box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-  transition: box-shadow .3s, transform .3s, background .3s, border-color .3s;
+  transition: box-shadow 0.3s, transform 0.3s, background 0.3s, border-color 0.3s;
 }
 .box:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.15);
@@ -125,7 +137,7 @@ section.main.special {
   font-size: 1.1em;
   font-weight: 500;
   border-bottom: 1px solid #eee;
-  padding-bottom: .3em;
+  padding-bottom: 0.3em;
 }
 .arti-name { font-weight: 600; color: #111; }
 .arti-time { color: #444; }
@@ -144,7 +156,7 @@ section.main.special {
 }
 
 /* ------------------------------
-   Image Styling (desktop)
+   Image Styling
 ------------------------------ */
 .image.fit img {
   width: 100%;
@@ -162,7 +174,7 @@ section.main.special {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: .8em;
+  gap: 0.8em;
   z-index: 1000;
 }
 .dot-nav a {
@@ -171,7 +183,7 @@ section.main.special {
   border-radius: 50%;
   background: #ccc;
   display: block;
-  transition: background .3s, transform .3s;
+  transition: background 0.3s, transform 0.3s;
 }
 .dot-nav a.active,
 .dot-nav a:hover {
@@ -180,16 +192,15 @@ section.main.special {
 }
 
 /* ------------------------------
-   MOBILE (≤768px)
+   MOBILE (≤768px): HIDE BOTH NAVS
 ------------------------------ */
 @media (max-width: 768px) {
-  /* 1) hide desktop navs */
   #nav,
   .dot-nav {
     display: none;
   }
 
-  /* 2) header & logo tweaks */
+  /* Full-width hero + content tweaks */
   header#header.alt {
     padding: 2.5em 1em 1.5em;
   }
@@ -197,44 +208,40 @@ section.main.special {
     width: 120px;
     height: 120px;
   }
-
-  /* 3) let sections & cards fill the viewport */
-  section.main,
-  section.main.special,
+  section.main {
+    padding: 2em 1em;
+  }
+  section.main.special {
+    padding: 1em 1em 2em;
+  }
   .box {
-    max-width: none !important;
-    margin: 1.5em 1em !important;
-    padding: 1.5em !important;
+    margin: 1.5em 0.5em;
+    padding: 1.5em;
   }
-
-  /* 4) show the full map by default—but still pinch-zoom the page */
-  .image.fit {
-    overflow: hidden;    /* no scrollbars */
+  .arti-schedule {
+    gap: 0.8em;
   }
-  .image.fit img {
-    display: block;
-    margin: 0 auto;
-    width: auto !important;
-    max-width: 100% !important;  /* scale the image down to fit */
-    height: auto !important;
-    border-radius: 10px;
-  }
-
-  /* 5) smaller footer logo */
   .footer-image img {
     width: 60%;
-    height: auto;
+    max-height: none;
   }
 }
 
 /* ------------------------------
-   MOBILE (≤480px)
+   MOBILE (≤480px): FURTHER TWEAKS
 ------------------------------ */
 @media (max-width: 480px) {
-  header#header.alt h1 { font-size: 2.2em; }
-  header#header.alt p { font-size: 1em; }
+  header#header.alt h1 {
+    font-size: 2.2em;
+  }
+  header#header.alt p {
+    font-size: 1em;
+  }
   .box {
-    margin: 2em 1em;
+    margin: 2em 0.5em;
     padding: 1.8em;
+  }
+  .image.fit img {
+    width: 100%;
   }
 }
