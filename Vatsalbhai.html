@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"/>
+  <!-- Allow pinch-zoom on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes" />
   <title>Akshardham Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
@@ -20,9 +21,9 @@
       <div class="logo-circle">
         <img src="images/akdm_logo.png" alt="Akshardham Academy Logo" />
       </div>
-      <h1 id="name">Jay Swaminarayan<br>Vatsalbhai</h1>
+      <h1 id="name">Jay Swaminarayan<br />Delegate Name</h1>
       <p>
-        We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.<br>
+        We're thrilled to have you join us at Robbinsville Akshardham. Below is your personalized stay information.<br />
         If you have any questions, feel free to reach out to the listed contacts.
       </p>
     </header>
@@ -41,10 +42,10 @@
     <!-- Dot Navigator (desktop only) -->
     <div class="dot-nav">
       <a href="#accommodations" aria-label="Accommodations"></a>
-      <a href="#wifi"           aria-label="WiFi Info"></a>
-      <a href="#account"        aria-label="Account Info"></a>
-      <a href="#schedule"       aria-label="Arti Schedule"></a>
-      <a href="#contact"        aria-label="Contact Info"></a>
+      <a href="#wifi" aria-label="WiFi Info"></a>
+      <a href="#account" aria-label="Account Info"></a>
+      <a href="#schedule" aria-label="Arti Schedule"></a>
+      <a href="#contact" aria-label="Contact Info"></a>
     </div>
 
     <!-- Main Content -->
@@ -52,7 +53,7 @@
       <section id="accommodations" class="main">
         <div class="box">
           <h2><i class="fas fa-bed"></i> Accommodations</h2>
-          <p><strong>Trailer:</strong> 9<br><strong>Dates:</strong> 5/19/25 to 6/30/25</p>
+          <p><strong>Trailer:</strong> 9<br /><strong>Dates:</strong> 5/19/25 to 6/30/25</p>
           <div class="image fit">
             <img src="images/DJI 0427.png" alt="Room Map or Location" />
           </div>
@@ -62,14 +63,14 @@
       <section id="wifi" class="main">
         <div class="box">
           <h2><i class="fas fa-wifi"></i> WiFi Information</h2>
-          <p><strong>SSID:</strong> Akshardham<br><strong>Username:</strong> john123<br><strong>Password:</strong> pass123</p>
+          <p><strong>SSID:</strong> Akshardham<br /><strong>Username:</strong> john123<br /><strong>Password:</strong> pass123</p>
         </div>
       </section>
 
       <section id="account" class="main">
         <div class="box">
           <h2><i class="fas fa-user-circle"></i> Account Information</h2>
-          <p><strong>Email:</strong> john@akdm.org<br><strong>Login ID:</strong> john123<br><strong>Temporary Password:</strong> akdm@2024</p>
+          <p><strong>Email:</strong> john@akdm.org<br /><strong>Login ID:</strong> john123<br /><strong>Temporary Password:</strong> akdm@2024</p>
         </div>
       </section>
 
@@ -117,7 +118,7 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- Dot‐nav Highlight Script -->
+  <!-- Dot-nav Highlight Script (unchanged) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const dots     = Array.from(document.querySelectorAll('.dot-nav a'));
@@ -135,7 +136,7 @@
         });
       });
 
-      // Highlight based on scroll + bottom‐check
+      // Highlight based on scroll + bottom-check
       function highlightDot() {
         const scrollPos = window.pageYOffset + navH + 5;
         const bottomPos = window.pageYOffset + window.innerHeight;
