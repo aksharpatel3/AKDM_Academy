@@ -232,3 +232,28 @@ section.main.special {
     padding:1.8em;
   }
 }
+
+
+@media (max-width: 768px) {
+  /* hide both navs */
+  #nav, .dot-nav { display: none; }
+
+  /* full-width sections & cards */
+  section.main, section.main.special,
+  .box {
+    max-width: none !important;
+    margin: 0 1em !important;
+    padding: 1.5em !important;
+  }
+
+  /* make the map image scale to the card */
+  .image.fit {
+    overflow: visible !important;    /* no horizontal scroll */
+  }
+  .image.fit img {
+    display: block;
+    width: 100% !important;          /* fill the card’s width */
+    height: auto !important;
+    border-radius: 10px;
+  }
+}
