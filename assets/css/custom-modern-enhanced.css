@@ -1,6 +1,6 @@
 /* custom-modern-enhanced.css */
 
-/* 1) Global box-sizing & prevent any stray horizontal scroll */
+/* 1) Global box-sizing & no sideways scroll */
 *,
 *::before,
 *::after {
@@ -10,10 +10,10 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;    /* no sideways scrolling */
+  overflow-x: hidden;
 }
 
-/* 2) Allow pinch/zoom and normal touch actions on mobile */
+/* 2) Pinch-zoom enabled */
 html {
   touch-action: manipulation;
 }
@@ -206,14 +206,28 @@ section.main.special {
    MOBILE (≤768px)
 ------------------------------ */
 @media (max-width: 768px) {
-  /* 1) Make the wrapper full-bleed with 1rem side gutters */
-  #wrapper {
-    max-width: none;
-    width: 100%;
+  /* Use body padding for gutters */
+  body {
     padding: 0 1rem;
   }
+  
+  /* Let wrapper simply be full-bleed */
+  #wrapper {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
 
-  /* 2) Force cards to fill wrapper (no extra horizontal margin) */
+  /* Section containers also full-width */
+  section.main,
+  section.main.special {
+    max-width: none;
+    width: auto;
+    padding: 2em 0;
+  }
+
+  /* Cards span the full “body minus gutter” */
   .box {
     max-width: none;
     width: 100%;
@@ -221,35 +235,30 @@ section.main.special {
     padding: 1.5em;
   }
 
-  /* 3) Same for the arti schedule container */
+  /* Arti schedule too */
   .arti-schedule {
     max-width: none;
     width: 100%;
+    gap: 0.8em;
+    margin: 1.5em 0;
   }
 
-  /* 4) Hide desktop navs on mobile */
+  /* Hide both desktop navs */
   #nav,
   .dot-nav {
     display: none;
   }
 
-  /* 5) Tweak spacing for smaller screens */
+  /* Header tweaks for small screens */
   header#header.alt {
-    padding: 2.5em 1em 1.5em;
+    padding: 2.5em 0 1.5em;
   }
   .logo-circle {
     width: 120px;
     height: 120px;
   }
-  section.main {
-    padding: 2em 1em;
-  }
-  section.main.special {
-    padding: 1em 1em 2em;
-  }
-  .arti-schedule {
-    gap: 0.8em;
-  }
+  
+  /* Footer image shrink */
   .footer-image img {
     width: 60%;
     max-height: none;
@@ -267,10 +276,7 @@ section.main.special {
     font-size: 1em;
   }
   .box {
-    margin: 2em 0.5em;
+    margin: 2em 0;
     padding: 1.8em;
-  }
-  .image.fit img {
-    width: 100%;
   }
 }
