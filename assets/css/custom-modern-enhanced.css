@@ -192,15 +192,36 @@ section.main.special {
 }
 
 /* ------------------------------
-   MOBILE (≤768px): HIDE BOTH NAVS
+   MOBILE (≤768px)
 ------------------------------ */
 @media (max-width: 768px) {
+  /* Let the outer wrapper span full width with side gutters */
+  #wrapper {
+    max-width: none;
+    padding: 0 1rem;
+  }
+
+  /* Force all cards to fill the wrapper */
+  .box {
+    max-width: none;
+    width: 100%;
+    margin: 1.5em 0;
+    padding: 1.5em;
+  }
+
+  /* And make the arti schedule full-width too */
+  .arti-schedule {
+    max-width: none;
+    width: 100%;
+  }
+
+  /* Hide both navigations */
   #nav,
   .dot-nav {
     display: none;
   }
 
-  /* Full-width hero + content tweaks */
+  /* Tweak header/content spacing */
   header#header.alt {
     padding: 2.5em 1em 1.5em;
   }
@@ -213,10 +234,6 @@ section.main.special {
   }
   section.main.special {
     padding: 1em 1em 2em;
-  }
-  .box {
-    margin: 1.5em 0.5em;
-    padding: 1.5em;
   }
   .arti-schedule {
     gap: 0.8em;
