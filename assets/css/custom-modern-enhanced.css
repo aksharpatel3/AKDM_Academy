@@ -238,3 +238,30 @@ section.main.special {
     width: 100%;
   }
 }
+
+
+/* ------------------------------
+   MOBILE (≤768px): FULL-WIDTH BOX & IMAGE
+------------------------------ */
+@media (max-width: 768px) {
+  /* Allow boxes to go edge-to-edge (minus a small gutter) */
+  .box {
+    max-width: 100%;
+    margin: 1.5em 1em;      /* small left/right gutter */
+    padding: 1.5em;         /* keep your padding */
+  }
+
+  /* Make the image container fill the box */
+  .box .image.fit {
+    margin: 0;
+    width: 100%;
+  }
+
+  /* And force the <img> to be 100% of that */
+  .box .image.fit img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;    /* preserve your rounding */
+  }
+}
