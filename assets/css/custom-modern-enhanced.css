@@ -1,6 +1,6 @@
 /* custom-modern-enhanced.css */
 
-/* 1) Global box-sizing & no sideways scroll */
+/* 1) Global box-sizing & prevent any horizontal overflow */
 *,
 *::before,
 *::after {
@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 2) Pinch-zoom enabled */
+/* 2) Enable pinch-zoom and standard touch interactions on mobile */
 html {
   touch-action: manipulation;
 }
@@ -124,6 +124,8 @@ section.main.special {
   border: 1px solid #e2ddd4;
   box-shadow: 0 10px 20px rgba(0,0,0,0.06);
   transition: box-shadow 0.3s, transform 0.3s, background 0.3s, border-color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
 }
 .box:hover,
 .box:active {
@@ -151,8 +153,13 @@ section.main.special {
   border-bottom: 1px solid #eee;
   padding-bottom: 0.3em;
 }
-.arti-name { font-weight: 600; color: #111; }
-.arti-time { color: #444; }
+.arti-name {
+  font-weight: 600;
+  color: #111;
+}
+.arti-time {
+  color: #444;
+}
 
 /* ------------------------------
    Footer Image
@@ -207,12 +214,12 @@ section.main.special {
    MOBILE (≤768px)
 ------------------------------ */
 @media (max-width: 768px) {
-  /* Use body padding for gutters */
+  /* Use body padding as gutter */
   body {
     padding: 0 1rem;
   }
-  
-  /* Let wrapper simply be full-bleed */
+
+  /* Make wrapper full-bleed */
   #wrapper {
     max-width: none;
     margin: 0;
@@ -220,7 +227,7 @@ section.main.special {
     width: auto;
   }
 
-  /* Section containers also full-width */
+  /* Sections span full width */
   section.main,
   section.main.special {
     max-width: none;
@@ -228,7 +235,7 @@ section.main.special {
     padding: 2em 0;
   }
 
-  /* Cards span the full “body minus gutter” */
+  /* Cards fill the available space */
   .box {
     max-width: none;
     width: 100%;
@@ -236,7 +243,7 @@ section.main.special {
     padding: 1.5em;
   }
 
-  /* Arti schedule too */
+  /* Arti schedule full width */
   .arti-schedule {
     max-width: none;
     width: 100%;
@@ -244,13 +251,13 @@ section.main.special {
     margin: 1.5em 0;
   }
 
-  /* Hide both desktop navs */
+  /* Hide desktop navs */
   #nav,
   .dot-nav {
     display: none;
   }
 
-  /* Header tweaks for small screens */
+  /* Header tweaks */
   header#header.alt {
     padding: 2.5em 0 1.5em;
   }
@@ -258,8 +265,8 @@ section.main.special {
     width: 120px;
     height: 120px;
   }
-  
-  /* Footer image shrink */
+
+  /* Footer image resize */
   .footer-image img {
     width: 60%;
     max-height: none;
