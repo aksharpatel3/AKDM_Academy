@@ -1,18 +1,19 @@
 /* custom-modern-enhanced.css */
 
-/* 1) Global box-sizing & prevent stray horizontal scroll */
+/* 1) Global box-sizing & prevent any stray horizontal scroll */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: hidden;    /* no sideways scrolling */
 }
 
-/* Enable pinch-zoom and standard touch interactions on mobile */
+/* 2) Allow pinch/zoom and normal touch actions on mobile */
 html {
   touch-action: manipulation;
 }
@@ -205,14 +206,14 @@ section.main.special {
    MOBILE (≤768px)
 ------------------------------ */
 @media (max-width: 768px) {
-  /* Let the wrapper fill the screen with side gutters */
+  /* 1) Make the wrapper full-bleed with 1rem side gutters */
   #wrapper {
     max-width: none;
     width: 100%;
     padding: 0 1rem;
   }
 
-  /* Force cards full-width inside that wrapper */
+  /* 2) Force cards to fill wrapper (no extra horizontal margin) */
   .box {
     max-width: none;
     width: 100%;
@@ -220,19 +221,19 @@ section.main.special {
     padding: 1.5em;
   }
 
-  /* Make arti-schedule also span full-width */
+  /* 3) Same for the arti schedule container */
   .arti-schedule {
     max-width: none;
     width: 100%;
   }
 
-  /* Hide both navigations on mobile */
+  /* 4) Hide desktop navs on mobile */
   #nav,
   .dot-nav {
     display: none;
   }
 
-  /* Adjust header & content spacing */
+  /* 5) Tweak spacing for smaller screens */
   header#header.alt {
     padding: 2.5em 1em 1.5em;
   }
