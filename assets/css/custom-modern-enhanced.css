@@ -265,3 +265,46 @@ section.main.special {
     border-radius: 10px;    /* preserve your rounding */
   }
 }
+
+
+/* --------------------------------
+   MOBILE OVERRIDES (≤768px)
+   — force full-width wrapper, sections, boxes & images
+-------------------------------- */
+@media (max-width: 768px) {
+
+  /* 1) Let the outer wrapper stretch */
+  #wrapper {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 2) Remove section width caps */
+  section.main,
+  section.main.special {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 1em !important;
+  }
+
+  /* 3) Uncap your cards */
+  .box {
+    max-width: none !important;
+    margin: 1.5em 1em !important;   /* small gutters */
+    padding: 1.5em !important;
+  }
+
+  /* 4) Make the image container & image fill it */
+  .box .image.fit {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  .box .image.fit img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 10px; /* keep your rounded corners */
+  }
+}
+
