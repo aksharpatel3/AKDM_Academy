@@ -125,7 +125,8 @@ section.main.special {
   box-shadow: 0 10px 20px rgba(0,0,0,0.06);
   transition: box-shadow 0.3s, transform 0.3s, background 0.3s, border-color 0.3s;
 }
-.box:hover {
+.box:hover,
+.box:active {
   box-shadow: 0 14px 28px rgba(0,0,0,0.15);
   transform: translateY(-4px);
   border-color: #c9b99d;
